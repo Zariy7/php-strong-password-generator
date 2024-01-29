@@ -19,7 +19,12 @@
             $symbols_usage = true;
         }
 
-        $_SESSION['pwd'] = pwdGen($_GET['length'], $letter_usage, $number_usage, $symbols_usage);
+        $repeat_chars = false;
+        if(isset($_GET['repeat']) && $_GET['repeat'] == 'true'){
+            $repeat_chars = true;
+        }
+
+        $_SESSION['pwd'] = pwdGen($_GET['length'], $letter_usage, $number_usage, $symbols_usage, $repeat_chars);
         
         header('Location: ./partials/pwdshow.php');
         exit();
@@ -41,11 +46,13 @@
                 <input type="number" name="length" class="form-control" min="0">
 
                 <label for="letters">Use letters?</label>
-                <input type="checkbox" id="letters" name="letters" value="true">
+                <input type="checkbox" id="letters" name="letters" value="true" checked>
                 <label for="numbers">Use numbers?</label>
-                <input type="checkbox" id="numbers" name="numbers" value="true">
+                <input type="checkbox" id="numbers" name="numbers" value="true" checked>
                 <label for="symbols">Use symbols?</label>
-                <input type="checkbox" id="symbols" name="symbols" value="true">
+                <input type="checkbox" id="symbols" name="symbols" value="true" checked>
+                <label for="repeat">Repeat characters?</label>
+                <input type="checkbox" id="repeat" name="repeat" value="true" checked>
                 <button type="submit" class="btn btn-secondary">Generate</button>
             </form>
         </div>
