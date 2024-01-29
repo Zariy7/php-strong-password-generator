@@ -1,27 +1,8 @@
 <?php 
+    include __DIR__.'/partials/functions.php';
+
     if(isset($_GET['length']) && $_GET['length']!='' && $_GET['length'] > 0 ){
-        $lc_alphabet = 'abcdefghijklmnopqrstuvwxyz';
-        $uc_alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $numbers = '0123456789';
-        $symbols = '\!$%&/()=?[]{}@#§-_<>';
-        $pwd_characters = [
-            $lc_alphabet,
-            $uc_alphabet,
-            $numbers,
-            $symbols,
-        ];
-        $length = intval($_GET['length']);
-        $pwd = '';
-        //var_dump($pwd_characters, $length);
-
-        for($i = 0; $i<$length; $i++){
-            $reference = rand(0, 3);
-            $options = $pwd_characters[$reference];
-
-            $pwd = $pwd.$options[rand(0, strlen($options)-1)];
-        }
-
-        //var_dump($pwd);
+        $pwd = pwdGen($_GET['length']);
     }
 ?>
 
@@ -43,7 +24,7 @@
         </div>
         <div class="container">
             <?php 
-                if($pwd!=''){
+                if(isset($pwd) && $pwd!=''){
                     echo 'Your password is: '.$pwd;
                 }
             ?>
