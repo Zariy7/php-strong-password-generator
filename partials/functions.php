@@ -3,7 +3,7 @@
         $lc_alphabet = 'abcdefghijklmnopqrstuvwxyz';
         $uc_alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $integers = '0123456789';
-        $symbols = '\!$%&/()=?[]{}@#§-_<>';
+        $special_characters = '\!$%&/()=?[]{}@#§-_<>';
 
         $pwd_characters = [];
 
@@ -17,7 +17,7 @@
         }
 
         if($symbols){
-            $pwd_characters [] = $symbols;
+            $pwd_characters [] = $special_characters;
         }
 
         if(count($pwd_characters) == 0){
