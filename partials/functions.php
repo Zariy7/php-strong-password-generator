@@ -26,13 +26,17 @@
 
         //Can't have a password without anything in it!
         if(count($pwd_characters) == 0){
-            $pwd = "can't generate a password using no symbols.";
-            return $pwd;
+            return "can't generate a password using no symbols.";
         }
 
         $length = intval($length);
         $pwd = '';
         $i = 0;
+
+        //No repeats means maximum length possible!
+        if($length > array_sum(array_map('strlen', $pwd_characters)) && !$repeat){
+            return "there aren't enough symbols to match that length without repeats!";
+        }
 
         do{
             //Chose from which string to pick a character.
