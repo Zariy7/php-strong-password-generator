@@ -3,7 +3,23 @@
 
     if(isset($_GET['length']) && $_GET['length']!='' && $_GET['length'] > 0 ){
         session_start();
-        $_SESSION['pwd'] = pwdGen($_GET['length']);
+
+        $letter_usage = false;
+        if($_GET['letters'] == 'true'){
+            $letter_usage = true;
+        }
+
+        $number_usage = false;
+        if($_GET['numbers'] == 'true'){
+            $number_usage = true;
+        }
+
+        $symbols_usage = false;
+        if($_GET['symbols'] == 'true'){
+            $symbols_usage = true;
+        }
+
+        $_SESSION['pwd'] = pwdGen($_GET['length'], $letter_usage, $number_usage, $symbols_usage);
         
         header('Location: ./partials/pwdshow.php');
         exit();
@@ -23,6 +39,13 @@
             <form action="./index.php" method="GET">
                 <label for="length" class="form-label">Length of Password:</label>
                 <input type="number" name="length" class="form-control" min="0">
+
+                <label for="letters">Use letters?</label>
+                <input type="checkbox" id="letters" name="letters" value="true">
+                <label for="numbers">Use numbers?</label>
+                <input type="checkbox" id="numbers" name="numbers" value="true">
+                <label for="symbols">Use symbols?</label>
+                <input type="checkbox" id="symbols" name="symbols" value="true">
                 <button type="submit" class="btn btn-secondary">Generate</button>
             </form>
         </div>
