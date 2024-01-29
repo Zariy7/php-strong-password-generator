@@ -4,6 +4,7 @@
         $uc_alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $integers = '0123456789';
         $special_characters = '\!$%&/()=?[]{}@#§-_<>';
+        $length = intval($length);
 
         //What characters can be chosen for the pwd?
         $pwd_characters = [];
@@ -24,19 +25,18 @@
             $pwd_characters [] = $special_characters;
         }
 
-        //Can't have a password without anything in it!
+        //ERROR MESSAGES:
+            //Can't have a password without anything in it!
         if(count($pwd_characters) == 0){
             return "can't generate a password using no symbols.";
         }
 
-        $length = intval($length);
-        $pwd = '';
-        $i = 0;
-
-        //No repeats means maximum length possible!
+            //No repeats means maximum length possible!
         if($length > array_sum(array_map('strlen', $pwd_characters)) && !$repeat){
             return "there aren't enough symbols to match that length without repeats!";
         }
+
+        $pwd = '';
 
         do{
             //Chose from which string to pick a character.
@@ -47,9 +47,8 @@
             //Chain the character to the password.
             if($repeat || !str_contains($pwd, $char)){
                 $pwd .= $char;
-                $i++;
             }
-        }while($i < $length);
+        }while(strlen($pwd) < $length);
 
         return $pwd;
     }
