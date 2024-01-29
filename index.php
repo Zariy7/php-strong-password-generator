@@ -5,17 +5,17 @@
         session_start();
 
         $letter_usage = false;
-        if($_GET['letters'] == 'true'){
+        if(isset($_GET['letters']) && $_GET['letters'] == 'true'){
             $letter_usage = true;
         }
 
         $number_usage = false;
-        if($_GET['numbers'] == 'true'){
+        if(isset($_GET['numbers']) && $_GET['numbers'] == 'true'){
             $number_usage = true;
         }
 
         $symbols_usage = false;
-        if($_GET['symbols'] == 'true'){
+        if(isset($_GET['symbols']) && $_GET['symbols'] == 'true'){
             $symbols_usage = true;
         }
 
