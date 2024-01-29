@@ -21,7 +21,7 @@
             $pwd = $pwd.$options[rand(0, strlen($options)-1)];
         }
 
-        var_dump($pwd);
+        //var_dump($pwd);
     }
 ?>
 
@@ -40,6 +40,13 @@
                 <input type="number" name="length" class="form-control" min="0">
                 <button type="submit" class="btn btn-secondary">Generate</button>
             </form>
+        </div>
+        <div class="container">
+            <?php 
+                if($pwd!=''){
+                    echo 'Your password is: '.$pwd;
+                }
+            ?>
         </div>
     </body>
 </html>
