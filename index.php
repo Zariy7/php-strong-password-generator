@@ -1,8 +1,12 @@
-<?php 
+<?php
     include __DIR__.'/partials/functions.php';
 
     if(isset($_GET['length']) && $_GET['length']!='' && $_GET['length'] > 0 ){
-        $pwd = pwdGen($_GET['length']);
+        session_start();
+        $_SESSION['pwd'] = pwdGen($_GET['length']);
+        
+        header('Location: ./partials/pwdshow.php');
+        exit();
     }
 ?>
 
@@ -21,13 +25,6 @@
                 <input type="number" name="length" class="form-control" min="0">
                 <button type="submit" class="btn btn-secondary">Generate</button>
             </form>
-        </div>
-        <div class="container">
-            <?php 
-                if(isset($pwd) && $pwd!=''){
-                    echo 'Your password is: '.$pwd;
-                }
-            ?>
         </div>
     </body>
 </html>
